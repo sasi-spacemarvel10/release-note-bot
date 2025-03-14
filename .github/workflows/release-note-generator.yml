@@ -20,7 +20,7 @@ jobs:
       
       - name: Install dependencies
         run: |
-          pip install openai==1.10.0 requests pyyaml
+          pip install openai==0.28 requests pyyaml
       
       - name: Run release note script
         run: python .github/scripts/generate_release_note.py
