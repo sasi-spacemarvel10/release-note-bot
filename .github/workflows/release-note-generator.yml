@@ -1,0 +1,28 @@
+name: Generate Release Note
+
+on:
+  pull_request:
+    types:
+      - closed
+
+jobs:
+  generate-release-note:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: '3.10'
+
+      - name: Install dependencies
+        run: |
+          pip install openai requests pyyaml
+
+      - name: Run Release Note Script
+        run: python .github/scripts/generate_release_note.py
+        env:
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
