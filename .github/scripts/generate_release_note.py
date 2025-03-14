@@ -15,7 +15,7 @@ PR_NUMBER = event_data['pull_request']['number']
 
 # Set OpenAI API Key
 import openai
-client = openai.OpenAI(api_key=OPENAI_API_KEY)
+openai.api_key = OPENAI_API_KEY
 
 # Get PR details from GitHub
 headers = {"Authorization": f"token {GITHUB_TOKEN}"}
@@ -31,11 +31,10 @@ body = pr_data["body"]
 
 # Use OpenAI to generate release note
 prompt = f"Generate a release note based on this PR:\nTitle: {title}\nDescription: {body}"
-response = client.chat.completions.create(
+response = openai.ChatCompletion.create(
     model="gpt-3.5-turbo",
     messages=[{"role": "system", "content": prompt}]
 )
-
 release_note = response["choices"][0]["message"]["content"]
 
 # Create a GitHub release
