@@ -30,7 +30,7 @@ body = pr_data["body"]
 
 # Use OpenAI to generate release note
 prompt = f"Generate a release note based on this PR:\nTitle: {title}\nDescription: {body}"
-response = openai.ChatCompletion.create(
+response = openai.chat.completions.create(
     model="gpt-3.5-turbo",
     messages=[{"role": "system", "content": prompt}]
 )
