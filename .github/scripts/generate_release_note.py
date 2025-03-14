@@ -14,9 +14,9 @@ with open(os.getenv('GITHUB_EVENT_PATH')) as f:
 PR_NUMBER = event_data['pull_request']['number']
 
 # Set OpenAI API Key
-from openai import OpenAI
+import openai
+client = openai.OpenAI(api_key=OPENAI_API_KEY)
 
-client = OpenAI(api_key=OPENAI_API_KEY)
 # Get PR details from GitHub
 headers = {"Authorization": f"token {GITHUB_TOKEN}"}
 url = f"https://api.github.com/repos/{REPO}/pulls/{PR_NUMBER}"
