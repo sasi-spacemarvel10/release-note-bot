@@ -3,7 +3,7 @@ import json
 import requests
 
 # Get environment variables
-GITHUB_TOKEN = os.getenv("GH_TOKEN")
+GH_TOKEN = os.getenv("GH_TOKEN")
 TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
 REPO = os.getenv("GITHUB_REPOSITORY")
 
@@ -13,7 +13,7 @@ with open(os.getenv('GITHUB_EVENT_PATH')) as f:
 PR_NUMBER = event_data['pull_request']['number']
 
 # Get PR details from GitHub
-headers = {"Authorization": f"token {GITHUB_TOKEN}"}
+headers = {"Authorization": f"token {GH_TOKEN}"}
 url = f"https://api.github.com/repos/{REPO}/pulls/{PR_NUMBER}"
 response = requests.get(url, headers=headers)
 
@@ -52,7 +52,7 @@ release_data = {
     "draft": False,
     "prerelease": False
 }
-release_response = requests.post(release_url, headers=headers, json=release_data)
+release_response = requests.post(release_url, headers={"Authorization": f"token {GH_TOKEN}"}, json=release_data)
 
 if release_response.status_code != 201:
     raise Exception(f"Failed to create release: {release_response.status_code}, {release_response.text}")
