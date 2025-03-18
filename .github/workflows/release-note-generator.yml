@@ -17,6 +17,6 @@ jobs:
 
       - name: Run release note script
         env:
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
           TOGETHER_API_KEY: ${{ secrets.TOGETHER_API_KEY }}
         run: python .github/scripts/generate_release_note.py
