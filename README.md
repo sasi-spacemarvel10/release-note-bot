@@ -7,4 +7,4 @@ This bot generates release notes for GitHub PRs using an LLM
 # Release Note Bot 55
 # Release Note Bot 66
 # Release Note Bot 77
-
+# Release Note Bot 88
