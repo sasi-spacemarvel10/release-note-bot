@@ -3,7 +3,7 @@ import json
 import requests
 
 # Get environment variables
-GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
+GITHUB_TOKEN = os.getenv("GH_TOKEN")
 TOGETHER_API_KEY = os.getenv("TOGETHER_API_KEY")
 REPO = os.getenv("GITHUB_REPOSITORY")
 
